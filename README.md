@@ -5,6 +5,7 @@
 Cairn is a desktop app that manages Claude-powered coding agents working on your GitHub issues. Watch Claude plan, implement, and create pull requests—all with live transparency into every step.
 
 ![Main Cairn interface](screenshots/hero.png)
+*The main Cairn interface with project navigation, issue tracking, and workflow timeline.*
 
 ---
 
@@ -50,30 +51,35 @@ Open the `.dmg` and drag Cairn to your Applications folder.
 Click **Add Project** in the sidebar and select your git repository folder.
 
 ![Add Project dialog](screenshots/qs1.png)
+*Cairn auto-detects the project name and creates a short key for issue IDs.*
 
 ### 2. Create an Issue
 
 Press `c` or click **New Issue**. Give it a clear title and description—the more context you provide, the better Claude's plan will be.
 
 ![Create Issue dialog](screenshots/qs2.png)
+*Create issues with markdown descriptions and optional images.*
 
 ### 3. Start Planning
 
 Click **Start Planning** on your issue. Claude explores your codebase and proposes an implementation approach.
 
 ![Plan view](screenshots/qs3.png)
+*Claude's plan appears in a structured format. Review before approving.*
 
 ### 4. Approve and Implement
 
 When the plan looks good, click **Approve**. Claude begins implementation in an isolated git worktree, with every file change auto-committed.
 
 ![Implementation transcript](screenshots/qs4.png)
+*Watch Claude write and edit files in real-time. Each change is committed automatically.*
 
 ### 5. Review the PR
 
 After implementation, Cairn runs your CI commands. If they pass, a PR is created automatically.
 
 ![PR status](screenshots/qs5.png)
+*See PR status, CI results, and merge directly from Cairn.*
 
 ---
 
@@ -98,6 +104,7 @@ Each issue has a timeline showing its work history. The timeline contains nodes:
 - **Chat nodes** — Follow-up conversations
 
 ![Timeline sidebar](screenshots/timeline.png)
+*The timeline tracks all work on an issue, including multiple attempts.*
 
 ---
 
@@ -118,6 +125,7 @@ You can:
 If Claude needs clarification, it can pause and ask you questions directly.
 
 ![Plan approval](screenshots/wf-plan.png)
+*Review Claude's plan before committing to implementation.*
 
 ### Implementation Stage
 
@@ -130,6 +138,7 @@ After approval, Claude:
 If CI fails, Claude sees the error output and can fix issues before retrying.
 
 ![CI output](screenshots/wf-imp.png)
+*Local CI runs before creating the PR. Claude can fix failures automatically.*
 
 ### PR Stage
 
@@ -152,6 +161,7 @@ Open **Settings** (gear icon or `Cmd+,`) to customize Cairn.
 - **Branch Prefix** — Customize how branches are named (default: `agent/`)
 
 ![General settings](screenshots/settings-gen.png)
+*Configure your default Claude model and branch naming.*
 
 ### Project Commands
 
@@ -161,6 +171,7 @@ For each project, you can configure:
 - **CI Commands** — Run before PR creation (e.g., `bun run test`, `bun run build`)
 
 ![Project commands](screenshots/settings-cmds.png)
+*Add CI commands to validate changes before creating PRs.*
 
 ### GitHub Integration
 
@@ -177,6 +188,7 @@ Once connected, you'll see:
 - Merge/close buttons
 
 ![GitHub settings](screenshots/settings-gh.png)
+*One-click GitHub App setup—no manual configuration needed.*
 
 ### Custom Prompts
 
@@ -189,13 +201,51 @@ Override the default system prompts for planning and implementation phases. Usef
 | Key | Action |
 |-----|--------|
 | `c` | Create new issue |
-| `↑` / `k` | Previous issue |
-| `↓` / `j` | Next issue |
+| `↑` / `k` | Previous issue / node |
+| `↓` / `j` | Next issue / node |
+| `←` | Previous issue (detail view) |
+| `→` | Next issue (detail view) |
 | `Enter` | Open selected issue |
 | `v` | Toggle chat/plan view |
-| `[` / `]` | Previous/next timeline node |
 | `Esc` | Close dialog / go back |
 | `?` | Show all shortcuts |
+
+---
+
+## Tips
+
+**Write detailed issue descriptions.** The more context you provide—requirements, constraints, relevant files—the better Claude's plan will be.
+
+**Use planning to explore.** Not sure how to approach something? Start a planning session and let Claude investigate. You can always reject and try again.
+
+**Configure CI commands early.** Catching test failures before PR creation saves time. Add your build, lint, and test commands in project settings.
+
+**Pause and resume.** If Claude asks a question or you need to step away, the session can be resumed later with full context preserved.
+
+**Use project chat for exploration.** Before creating an issue, use the project chat to discuss ideas or ask questions about the codebase.
+
+---
+
+## Troubleshooting
+
+**Claude CLI not found**
+Ensure Claude CLI is installed and `claude` is in your PATH. Try running `claude --version` in a terminal.
+
+**GitHub webhooks not updating**
+Check that the GitHub App is installed on your repository. You can reinstall from Settings → GitHub.
+
+**CI commands failing**
+Review your commands in project settings. Commands run in the worktree directory, not your main checkout.
+
+**Session won't resume**
+If a session can't be resumed, you can start fresh. Previous context is visible in the transcript history.
+
+---
+
+## Links
+
+- [Report Issues](https://github.com/cairn-dev/cairn-releases/issues)
+- [Documentation](https://cairn.dev/docs)
 
 ---
 
