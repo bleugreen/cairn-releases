@@ -55,19 +55,6 @@ See the [Getting Started guide](https://cairn.computer/docs/getting-started) for
 - **Recipes** — Workflow graphs that orchestrate multiple agents in sequence or parallel
 - **Agents & Skills** — Customizable personas and injectable expertise for specialized tasks
 
-## Troubleshooting
-
-**Claude CLI not found**
-Ensure Claude CLI is installed and `claude` is in your PATH. Run `claude --version` to verify.
-
-**GitHub App connection failed**
-Check your network connection and try reconnecting from Settings → GitHub. You may need to reinstall the app on your repository.
-
-**Session won't resume**
-If a session can't be resumed, start fresh. Previous context remains visible in the transcript history.
-
-See [full troubleshooting guide](https://cairn.computer/docs/troubleshooting) for more help.
-
 ## Links
 
 - [Documentation](https://cairn.computer/docs)
